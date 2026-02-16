@@ -26,9 +26,11 @@ Imagine a real company that has:
 This lab models exactly that.
 
 ---
+
 ## Overview
 
-The lab models a realistic company environment with:
+The lab
+ models a realistic company environment with:
 
 - Multiple Linux servers with clearly defined roles
 - Centralized access and identity policies
@@ -74,6 +76,7 @@ Each build phase documents:
 The full build index is available at:
 
 [`build/00-build-index.md`](build/00-build-index.md)
+
 ---
 
 ## Project Status
