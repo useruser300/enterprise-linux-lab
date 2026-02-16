@@ -12,6 +12,20 @@ real execution order, real constraints, and production-style decisions.
 
 ---
 
+## Big Picture
+
+Imagine a real company that has:
+- Servers with defined roles
+- Centralized access and identity policies
+- A segmented network (LAN / DMZ)
+- Firewalls and security baselines
+- Internal services
+- Monitoring and operations
+- Backup and continuity planning
+
+This lab models exactly that.
+
+---
 ## Overview
 
 The lab models a realistic company environment with:
@@ -40,7 +54,7 @@ DMZ and LAN architecture with a single controlled gateway.
 
 Detailed architectural decisions and design rationale are documented in:
 
-architecture.md
+[`architecture.md`](architecture.md)
 
 ---
 
@@ -59,8 +73,7 @@ Each build phase documents:
 
 The full build index is available at:
 
-build/00-build-index.md
-
+[`build/00-build-index.md`](build/00-build-index.md)
 ---
 
 ## Project Status
