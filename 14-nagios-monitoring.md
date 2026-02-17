@@ -465,7 +465,7 @@ The following screenshot shows the Nagios service overview after full configurat
 
 All hosts are reachable and all configured service checks are operational.
 
-![Nagios Monitoring Overview](../assets/nagios-overview.png)
+![Nagios Monitoring Overview](../assets/nagios-overview)
 
 ---
 
