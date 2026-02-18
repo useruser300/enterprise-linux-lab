@@ -89,8 +89,8 @@ Postfix configuration:
 ## 3) Create Nagios User
 
 ```bash
-sudo useradd nagios || true
-sudo usermod -aG nagios www-data
+sudo useradd nagios
+sudo usermod -aG nagios <username>
 ```
 
 ---
