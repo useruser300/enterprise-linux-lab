@@ -621,13 +621,19 @@ rsync version ...
 
 ## Backup Script Location
 
-The centralized backup logic is implemented in a separate script:
+The centralized backup logic is implemented as a standalone script.
+
+On `srv-ops-01`, the script is installed at:
 
 ```text
 /usr/local/bin/backup_rsync.sh
 ```
 
-The full script is documented separately to keep this phase focused on:
+In this repository, the script is stored at:
+
+[`backup_rsync.sh`](backup_rsync.sh)
+
+The full script is kept separate from this phase document to keep this file focused on:
 
 - Backup architecture
 - Backup flow
@@ -635,9 +641,9 @@ The full script is documented separately to keep this phase focused on:
 - Verification
 - Operational behavior
 
-This file explains what the backup system does and why it exists.
+This document explains what the backup system does and why it exists.
 
-The script file explains how the backup process is implemented.
+The script shows how the backup process is implemented.
 
 ---
 
