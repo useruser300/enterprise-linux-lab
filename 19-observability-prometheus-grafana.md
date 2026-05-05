@@ -1,5 +1,15 @@
 # 19 – Observability with Prometheus and Grafana
 
+## Dashboard Preview
+
+The following screenshot shows Grafana visualizing Node Exporter metrics for `srv-app-01`.
+
+The dashboard displays CPU usage, system load, memory usage, filesystem usage, network traffic, and other system-level metrics collected by Prometheus.
+
+![Grafana Node Exporter Dashboard](assets/grafana-node-exporter-dashboard.png)
+
+---
+
 ## Goal
 
 Add metrics-based observability to the Enterprise Linux Lab using Prometheus, Node Exporter, and Grafana.
@@ -25,16 +35,6 @@ This phase enables:
 - Dashboard-based visibility
 - CPU, memory, disk, filesystem, and network monitoring
 - Operational insight across all current lab servers
-
----
-
-## Dashboard Preview
-
-The following screenshot shows Grafana visualizing Node Exporter metrics for `srv-app-01`.
-
-The dashboard displays CPU usage, system load, memory usage, filesystem usage, network traffic, and other system-level metrics collected by Prometheus.
-
-![Grafana Node Exporter Dashboard](assets/grafana-node-exporter-dashboard.png)
 
 ---
 
@@ -513,6 +513,16 @@ All targets are UP.
 
 ---
 
+## Prometheus Targets View
+
+The following screenshot shows the Prometheus Targets page after configuration.
+
+All configured Node Exporter targets are in the `UP` state, which confirms that Prometheus can successfully scrape metrics from all current lab servers.
+
+![Prometheus Targets](assets/prometheus-targets.png)
+
+---
+
 ## Grafana
 
 Grafana runs on `srv-ops-01`.
@@ -769,6 +779,83 @@ Expected:
 - CPU usage returns to normal after stopping the process
 
 ---
+
+## Validation and Failure Detection Test
+
+A simple validation test was performed to confirm that Prometheus detects target failures correctly.
+
+The test used `srv-app-01` as an example target.
+
+### Step 1 – Confirm Normal State
+
+Before the test, all Prometheus targets were healthy.
+
+Query used in Grafana Explore:
+
+```promql
+up
+```
+
+Expected result:
+
+```text
+srv-id-01:9100      = 1
+srv-edge-01:9100    = 1
+srv-ops-01:9100     = 1
+srv-app-01:9100     = 1
+localhost:9090      = 1
+```
+
+---
+
+### Step 2 – Stop Node Exporter on `srv-app-01`
+
+On `srv-app-01`:
+
+```bash
+sudo systemctl stop node_exporter
+```
+
+Then the query was executed again:
+
+```promql
+up
+```
+
+Prometheus correctly reported the target as down:
+
+```text
+srv-app-01:9100 = 0
+```
+
+This confirms that Prometheus detects exporter unavailability correctly.
+
+![Target Down Test](assets/prometheus-target-down-srv-app-01.png)
+
+---
+
+### Step 3 – Start Node Exporter Again
+
+On `srv-app-01`:
+
+```bash
+sudo systemctl start node_exporter
+```
+
+The `up` query was executed again.
+
+Prometheus showed the target as healthy again:
+
+```text
+srv-app-01:9100 = 1
+```
+
+This confirms successful recovery detection.
+
+![Target Recovery Test](assets/prometheus-target-recovery-srv-app-01.png)
+
+---
+
 
 ## Access Model
 
